@@ -7,8 +7,12 @@
     <title>Chattr | Chat Rooms</title>
 </head>
 <body>
-    What chat room would you like to enter?<br>
-    <input id="room-name-input" type="text" size="100"><br>
-    <input id="room-name-submit" type="button" value="Enter">
+    <h1>Chattr</h1>
+    <h2>Click on a chat room to enter!</h2><br>
+    <ul>
+        {% for chat_room in chat_rooms %}
+        <li><input type="button" onclick="enterRoom('{{ chat_room.room_name }}')" value="{{ chat_room.room_name }}"></li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
