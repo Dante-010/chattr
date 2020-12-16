@@ -1,17 +1,24 @@
 from django.http import Http404
 from django.shortcuts import render
+from django.views import View
 
 from .models import ChatRoom
 
-def index(request):
-    return render(request, 'chat/index.html', {
-        'chat_rooms': ChatRoom.objects.all()
-    })
+class IndexView(View):
+    template_name = 'chat/index.html'
 
-def room(request, room_name):
-    if ChatRoom.objects.filter(pk=room_name).exists() is False:
-        raise Http404("Chat room does not exist.")
-    
-    return render(request, 'chat/room.html', {
-        'room_name': room_name
-    })
+    def get(self, request, *args, **kwargs):
+        return render(request, template_name, {
+            'chat_rooms': ChatRoom.objects.all()
+        })
+
+class RoomView(View):
+    template_name = 'chat/room.html'
+
+    def get(self, request, room_name, *args, **kwargs):
+        if ChatRoom.objects.filter(pk=room_name).exists() is False:
+            raise Http404("Chat room does not exist.")
+
+        return render(request, template_name, {
+            'room_name': room_name
+        })
