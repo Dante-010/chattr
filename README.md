@@ -5,6 +5,12 @@ As the title says, it's just a simple live chat website, but I plan to add more 
 
 ---
 
+## Requirements
+
+Requirements can be found in the 'requirements.txt' file in the root folder.
+
+You can install them using `pip install -r requirements.txt`
+
 ### Running the server
 
 Use `python manage.py runserver` in order to start the server  
