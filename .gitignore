@@ -3,6 +3,8 @@
 # described in https://git-scm.com/docs/gitignore
 
 .vscode/
+*.sqlite3
+geckodriver.log
 
 *.egg-info
 *.pot

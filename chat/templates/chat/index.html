@@ -10,7 +10,7 @@
 <body>
     <h1>Chattr</h1>
     <h2>Click on a chat room to enter!</h2><br>
-    <ul>
+    <ul id="room-list">
         {% for chat_room in chat_rooms %}
         <li><input type="button" onclick="enterRoom('{{ chat_room.room_name }}')" value="{{ chat_room.room_name }}"></li>
         {% endfor %}
