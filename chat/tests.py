@@ -10,6 +10,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from .models import ChatRoom
 
+# === Normal Tests ===
 class MyTests(TestCase):
     async_client = AsyncClient()
     async def test_user_accessing_non_existing_room(self):
@@ -17,7 +18,7 @@ class MyTests(TestCase):
         response = await self.async_client.get('idonotexist')
         self.assertEqual(response.status_code, 404)
     
-
+# === Live Server Tests ===
 class ChatTests(ChannelsLiveServerTestCase):
     serve_static = True  # emulate StaticLiveServerTestCase
 
@@ -119,6 +120,8 @@ class ChatTests(ChannelsLiveServerTestCase):
 
     def _post_message(self, message):
         ActionChains(self.driver).send_keys(message + '\n').perform()
+
+    # === Properties === 
 
     @property
     def _chat_log_value(self):

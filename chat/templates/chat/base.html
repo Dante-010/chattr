@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset='utf-8'>
+        {% block head %}
+        <title>Chattr</title> 
+        {% endblock head %}
+    </head>
+
+    <body>
+        <div id="top-nav">
+            {% block top-nav %}
+            <ul>
+                <li><a href="/">Rooms</a></li>
+                <li><a href="/">Profile</a></li>
+                <li><a href="/">Settings</a></li>
+            </ul>
+            {% endblock top-nav %}
+        </div>
+        <div id="content">
+            {% block content %}{% endblock content %}
+        </div>
+    </body>
+</html>
