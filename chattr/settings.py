@@ -1,3 +1,4 @@
+from chattr.secrets import *
 from pathlib import Path
 import os
 
@@ -9,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^qyprgx4wqe%lh=nn5b_=nag+(x#m3co5lkd0!q$&nlj7w7$-i'
+# SECRET_KEY located in secrets.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
