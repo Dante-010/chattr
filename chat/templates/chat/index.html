@@ -1,19 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "./base.html" %}
+
+{% block head %}
     {% load static %}
-    <script src="{% static 'chat/scripts/index.js' %}" defer></script>
-    <link rel="stylesheet" href="{% static 'chat/styles/index.css' %}">
-    <meta charset="utf-8"/>
-    <title>Chattr | Chat Rooms</title>
-</head>
-<body>
+    <title>Chattr</title>
+    <script src="{% static 'chat/js/index.js' %}" defer></script>
+    <link rel="stylesheet" href="{% static 'chat/css/index.css' %}">
+{% endblock head %}
+
+{% block content %}
     <h1>Chattr</h1>
     <h2>Click on a chat room to enter!</h2><br>
-    <ul>
+    <ul id="room-list">
         {% for chat_room in chat_rooms %}
         <li><input type="button" onclick="enterRoom('{{ chat_room.room_name }}')" value="{{ chat_room.room_name }}"></li>
         {% endfor %}
     </ul>
-</body>
-</html>
+{% endblock content %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <link rel="shortcut icon" type="image/png" href="{% static 'chat/images/favicon.ico' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet"> 
+        <meta charset='utf-8'>
+        {% block head %}
+        <title>Chattr</title> 
+        {% endblock head %}
+    </head>
+
+    <body style="background-color: rgb(17, 17, 17);">
+        <div id="topnav">
+            {% block topnav %}
+                <a id="rooms" href="/">ROOMS</a>
+                <a id="profile" href="/">PROFILE</a>
+                <a id="settings" href="/">SETTINGS</a>
+            {% endblock topnav %}
+        </div>
+        <div id="content">
+            {% block content %}{% endblock content %}
+        </div>
+    </body>
+</html>
