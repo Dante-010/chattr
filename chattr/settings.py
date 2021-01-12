@@ -1,3 +1,6 @@
+import django
+django.setup()
+
 from chattr.secrets import *
 from pathlib import Path
 import os
@@ -13,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY located in secrets.py
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
