@@ -21,7 +21,7 @@ ADMINS = [('Dante', 'programmingdante@gmail.com'),]
 
 # Application definition
 
-INSTALLED_APPS = [\
+INSTALLED_APPS = [
     'channels',
     'chat',
     'django.contrib.admin',
