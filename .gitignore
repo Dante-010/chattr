@@ -6,6 +6,7 @@
 .vscode/
 geckodriver.log
 secrets.py
+secrets.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
