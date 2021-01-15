@@ -1,4 +1,3 @@
-import django
 import os
 from pathlib import Path
 
@@ -16,21 +15,21 @@ with(open(os.path.join(BASE_DIR, 'secrets.txt'))) as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 ADMINS = [('Dante', 'programmingdante@gmail.com'),]
 
 # Application definition
 
 INSTALLED_APPS = [
-    'channels',
-    'chat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chat',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -116,7 +115,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-ASGI_APPLICATION = 'chattr.asgi.application'
+ASGI_APPLICATION = 'chattr.routing.application'
 
 CHANNEL_LAYERS = {
     'default': {
@@ -126,5 +125,3 @@ CHANNEL_LAYERS = {
         },
     },
 }
-
-django.setup()
