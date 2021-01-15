@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 class ChatRoom(models.Model):
     room_name = models.CharField(max_length=100, primary_key=True)
     creation_date = models.DateTimeField('date created', auto_now=True)
