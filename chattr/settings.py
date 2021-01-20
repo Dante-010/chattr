@@ -15,7 +15,7 @@ with(open(os.path.join(BASE_DIR, 'secrets.txt'))) as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'dantepc.ddns.net']
 
 ADMINS = [('Dante', 'programmingdante@gmail.com'),]
 
