@@ -14,6 +14,6 @@ You can install them using `pip install -r requirements.txt`.
 
 ### Running the server
 
-Use `python manage.py runserver` in order to start the server.
+Use `python manage.py runserver` in order to start the debugging server.
 
 Remember to run redis with `docker run -p 6379:6379 -d redis:5`.

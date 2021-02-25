@@ -8,14 +8,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-with(open(os.path.join(BASE_DIR, 'secrets.txt'))) as f:
-    SECRET_KEY = f.read().strip()
+SECRET_KEY = os.environ['SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '0.0.0.0']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'dantepc.ddns.net']
 
 ADMINS = [('Dante', 'programmingdante@gmail.com'),]
 
@@ -68,8 +67,12 @@ WSGI_APPLICATION = 'chattr.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['POSTGRES_DB'],
+        'USER': os.environ['POSTGRES_USER'],
+        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+        'HOST': 'postgres', # Docker-compose service name
+        'PORT': 5432,       # Postgres default port
         'TEST': {
             'NAME': os.path.join(BASE_DIR, 'db_test.sqlite3')
         }
@@ -113,7 +116,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_ROOT = '/home/dante/data'
+STATIC_ROOT = os.environ['STATIC_FILES']
 
 STATIC_URL = '/static/'
 
