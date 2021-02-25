@@ -1,0 +1,68 @@
+# The app is composed of four services: nginx, daphne, redis and postgres:
+#
+# nginx works as a reverse proxy which serves static files and routes websocket traffic to daphne.
+# static files are located in 'nginx/collected_static'
+#
+# Our app runs inside daphne, which handles websocket requests and communicates with the database.
+# Websocker connections are set on port 8000
+#
+# redis is an in-memory data structure used as a database, cache, and message broker.
+#
+# Database environment variables (POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD) and static file location
+# (STATIC_FILES) should be defined in 'variable.env'
+# The database volume is automatically created in '/var/lib/docker/volumes'
+#
+# Services who do not need to know about each other are isolated through the use of two networks,
+# 'frontend' (nginx - daphne), and 'backend' (daphne - redis - postgres)
+
+version: "3.9"
+
+services: 
+  nginx:
+    image: nginx:latest
+    container_name: nginx_production
+    env_file: 
+      - variables.env
+    volumes:
+      ./nginx.conf:/etc/nginx/nginx.conf # Replace default config file with our own.
+    ports:
+      - 40:40
+    networks:
+      - frontend
+    depends_on:
+      - daphne 
+
+  daphne:
+    container_name: daphne_production
+    ports:
+      - 8000:8000
+    build: .
+    command: python manage.py migrate && python manage.py collectstatic && daphne -b 0.0.0.0 -p 8000 chattr.asgi:application
+    networks:
+      - frontend
+      - backend
+    depends_on: 
+      - redis
+      - postgres
+  
+  redis:
+    image: redis
+    container_name: redis_production
+    networks:
+      - backend
+    ports:
+      - 6379:6379
+
+  postgres:
+    image: postgres
+    container_name: postgres_production
+    env_file: 
+      - variables.env
+    volumes: 
+      - postgres-data:/var/lib/postgresql/data # Link our volume with the database folder
+    networks:
+      - backend
+
+  
+  volumes:
+    postgres-data:
