@@ -1,35 +1,34 @@
-from chattr.secrets import *
-from pathlib import Path
 import os
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY located in secrets.py
+SECRET_KEY = os.environ['SECRET_KEY']
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '192.168.1.103']
+ALLOWED_HOSTS=['192.168.1.102', 'dantepc.ddns.net', 'nginx']
 
 ADMINS = [('Dante', 'programmingdante@gmail.com'),]
 
 # Application definition
 
-INSTALLED_APPS = [\
-    'channels',
-    'chat',
+INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'chat',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -68,10 +67,14 @@ WSGI_APPLICATION = 'chattr.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['POSTGRES_DB'],
+        'USER': os.environ['POSTGRES_USER'],
+        'PASSWORD': os.environ['POSTGRES_PASSWORD'],
+        'HOST': os.environ['POSTGRES_HOST'], # Docker-compose service name
+        'PORT': os.environ['POSTGRES_PORT'],       # Postgres default port
         'TEST': {
-            'NAME': os.path.join(BASE_DIR, 'db_test.sqlite3')
+            'NAME': os.path.join(BASE_DIR, 'postgres_test')
         }
     }
 }
@@ -113,15 +116,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.environ['STATIC_FILES']
+
 STATIC_URL = '/static/'
 
-ASGI_APPLICATION = 'chattr.asgi.application'
+ASGI_APPLICATION = 'chattr.routing.application'
 
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [(os.environ['REDIS_HOST'], os.environ['REDIS_PORT'])],
         },
     },
 }
