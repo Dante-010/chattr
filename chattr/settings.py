@@ -14,7 +14,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'dantepc.ddns.net']
+ALLOWED_HOSTS = ['*', '192.168.1.102']
 
 ADMINS = [('Dante', 'programmingdante@gmail.com'),]
 
@@ -71,10 +71,10 @@ DATABASES = {
         'NAME': os.environ['POSTGRES_DB'],
         'USER': os.environ['POSTGRES_USER'],
         'PASSWORD': os.environ['POSTGRES_PASSWORD'],
-        'HOST': 'postgres', # Docker-compose service name
-        'PORT': 5432,       # Postgres default port
+        'HOST': os.environ['POSTGRES_HOST'], # Docker-compose service name
+        'PORT': os.environ['POSTGRES_PORT'],       # Postgres default port
         'TEST': {
-            'NAME': os.path.join(BASE_DIR, 'db_test.sqlite3')
+            'NAME': os.path.join(BASE_DIR, 'postgres_test')
         }
     }
 }
@@ -126,7 +126,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [(os.environ['REDIS_HOST'], os.environ['REDIS_PORT'])],
         },
     },
 }
