@@ -1,18 +1,17 @@
 # Chattr: A simple live chat website
 
-Hey all! This is my first Django project.
-
-As the title says, it's just a simple live chat website, but I plan to add more features when possible.
-
----
-
 ## Requirements
 
 Requirements can be found in the `requirements.txt` file in the root folder.
 
 You can install them using `pip install -r requirements.txt`.
 
-### Running the server
+### Running the app
+
+#### Production
+If running in production, you can simply use `docker-compose up` and the app will start by itself.
+
+#### Debugging/Developing
 
 Use `python manage.py runserver` in order to start the debugging server.
 
