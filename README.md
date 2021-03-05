@@ -13,6 +13,10 @@ If running in production, you can simply use `docker-compose up` and the app wil
 
 #### Debugging/Developing
 
+In order for `manage.py` to run without problems, you first need to export some environment variables
+using `export $(cat .env | xargs)`.
+You can change them as you wish, since they are only dummy variables (including the secret key).
+
 Use `python manage.py runserver` in order to start the debugging server.
 
 Remember to run redis with `docker run -p 6379:6379 -d redis:5`.
