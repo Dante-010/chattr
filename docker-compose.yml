@@ -1,21 +1,4 @@
-# TODO: Fix nginx not being able to connect with daphne 
-
-# The app is composed of four services: nginx, daphne, redis and postgres:
-#
-# nginx works as a reverse proxy which serves static files and routes websocket traffic to daphne.
-# static files are located in 'nginx/collected_static'
-#
-# Our app runs inside daphne, which handles websocket requests and communicates with the database.
-# Websocker connections are set on port 8000
-#
-# redis is an in-memory data structure used as a database, cache, and message broker.
-#
-# Database environment variables (POSTGRES_DB, POSTGRES_USER, POSTGRES_PASSWORD) and static file location
-# (STATIC_FILES) should be defined in 'variable.env'
-# The database volume is automatically created in '/var/lib/docker/volumes'
-#
-# Services who do not need to know about each other are isolated through the use of two networks,
-# 'frontend' (nginx - daphne), and 'backend' (daphne - redis - postgres)
+# See README.md - docker-compose layout
 
 version: "3.9"
 
@@ -24,8 +7,9 @@ services:
     image: nginx:latest
     container_name: nginx_production
     command: >-
+      # Substitute environment variables in our nginx config file.
       /bin/bash -c "envsubst < /chattr/nginx/chattr.template > /etc/nginx/conf.d/default.conf &&
-       nginx -g 'daemon off;'" # Substitute environment variables in our nginx config file
+       nginx -g 'daemon off;'" 
     env_file: 
       - .env
     volumes:
