@@ -13,7 +13,7 @@ with open(secret_key_file) as f:
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS=['dantepc.ddns.net', 'nginx']
+ALLOWED_HOSTS=['nginx']
 
 ADMINS = [('Dante', 'programmingdante@gmail.com'),]
 
