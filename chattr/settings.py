@@ -1,11 +1,14 @@
 import os
 from pathlib import Path
 
+secret_key_file = 'secret_key.txt'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+with open(secret_key_file) as f:
+    SECRET_KEY = f.readline().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -68,7 +71,7 @@ DATABASES = {
         'USER': os.environ['POSTGRES_USER'],
         'PASSWORD': os.environ['POSTGRES_PASSWORD'],
         'HOST': os.environ['POSTGRES_HOST'], # Docker-compose service name
-        'PORT': os.environ['POSTGRES_PORT'],       # Postgres default port
+        'PORT': os.environ['POSTGRES_PORT'], # Postgres default port
         'TEST': {
             'NAME': os.path.join(BASE_DIR, 'postgres_test')
         }
