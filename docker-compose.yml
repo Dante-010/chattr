@@ -6,10 +6,10 @@ services:
   nginx:
     image: nginx:latest
     container_name: nginx_production
-    command: >-
-      # Substitute environment variables in our nginx config file.
+    command:
       /bin/bash -c "envsubst < /chattr/nginx/chattr.template > /etc/nginx/conf.d/default.conf &&
-       nginx -g 'daemon off;'" 
+       nginx -g 'daemon off;'"
+      # Substitute environment variables in our nginx config file.
     env_file: 
       - .env
     volumes:
