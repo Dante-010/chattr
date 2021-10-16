@@ -1,12 +1,12 @@
 import os
 from pathlib import Path
 
-secret_key_file = 'secret_key.txt'
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
+secret_key_file = os.path.join(BASE_DIR, 'secret_key.txt')
+
 with open(secret_key_file) as f:
     SECRET_KEY = f.readline().strip()
 
