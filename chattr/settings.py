@@ -5,10 +5,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-secret_key_file = os.path.join(BASE_DIR, 'secret_key.txt')
-
-with open(secret_key_file) as f:
-    SECRET_KEY = f.readline().strip()
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False

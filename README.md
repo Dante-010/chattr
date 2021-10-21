@@ -2,22 +2,10 @@
 
 ## Running the app
 
-First, you should create a file named: 'secret_key.txt' (or anything you want really, you can change this in the [settings.py](chattr/settings.py) file) and add a Django secret key.
-You can generate one using this code:
-```python
-from django.core.management.utils import get_random_secret_key  
-get_random_secret_key()
-```
-This is just a placeholder, the real key is kept secret on my machine ;).
-
-Then, simply run `docker-compose up` in order to run the app.
+Simply run `docker-compose up` in order to start the app.
 ## docker-compose layout
 
 This app is composed of four services: **nginx**, **daphne**, **redis** and **postgres**:
-
-- **nginx** works as a reverse proxy which serves static files and routes websocket traffic to daphne.
-Static files are located in 'nginx/collected_static'.
-
 - The app runs inside **daphne**, which handles websocket requests and communicates with the database.
 Websocket connections are set on port 8000.
 

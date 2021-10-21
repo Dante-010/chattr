@@ -1,0 +1,5 @@
+TODO: 
+- Configure Heroku
+- Configure Docker Cloud
+- Configure CI/CD (With Github Actions)
+- Configure Github Secrets (SECRET_KEY) (Change secret_key.txt to a github secret).
