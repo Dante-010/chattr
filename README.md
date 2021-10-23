@@ -6,6 +6,10 @@ Simply run `docker-compose up` in order to start the app.
 ## docker-compose layout
 
 This app is composed of four services: **nginx**, **daphne**, **redis** and **postgres**:
+
+- **nginx** works as a reverse proxy which serves static files and routes websocket traffic to daphne.
+Static files are located in 'nginx/collected_static'.
+
 - The app runs inside **daphne**, which handles websocket requests and communicates with the database.
 Websocket connections are set on port 8000.
 
