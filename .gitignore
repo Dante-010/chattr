@@ -1,5 +1,5 @@
-# Personal stuff:
 .vscode/
+chattr_venv
 geckodriver.log
 secret_key.txt
 
