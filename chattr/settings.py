@@ -62,7 +62,7 @@ WSGI_APPLICATION = 'chattr.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'production': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ['POSTGRES_DB'],
         'USER': os.environ['POSTGRES_USER'],
@@ -72,9 +72,14 @@ DATABASES = {
         'TEST': {
             'NAME': os.path.join(BASE_DIR, 'postgres_test')
         }
+    },
+    'development': {
+        'ENGINE': 'django.db.backends.sqlite3'
     }
 }
 
+default_database = os.environ.get('DJANGO_DATABASE', 'development')
+DATABASES['default'] = DATABASES[default_database]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
