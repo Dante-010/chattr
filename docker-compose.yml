@@ -26,7 +26,11 @@ services:
     env_file: 
       - .env
     build: .
-    command: bash -c "python manage.py migrate && python manage.py collectstatic --noinput && daphne -b 0.0.0.0 -p ${DAPHNE_PORT} --access-log - chattr.asgi:application"
+    command: bash -c "
+        python manage.py migrate
+        && python manage.py collectstatic --noinput
+        && python manage.py createsuperuser --noinput
+        && daphne -b 0.0.0.0 -p ${DAPHNE_PORT} --access-log - chattr.asgi:application"
     volumes:
       - static-files:${STATIC_FILES}
     ports:
