@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False')
 
 ALLOWED_HOSTS=['nginx', 'localhost']
 
@@ -74,11 +74,12 @@ DATABASES = {
         }
     },
     'development': {
-        'ENGINE': 'django.db.backends.sqlite3'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     }
 }
 
-default_database = os.environ.get('DJANGO_DATABASE', 'development')
+default_database = os.environ.get('DJANGO_DATABASE', 'production')
 DATABASES['default'] = DATABASES[default_database]
 
 # Password validation
