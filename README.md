@@ -1,9 +1,25 @@
-# Chattr: A simple live chat website
-
+# **Chattr**: A simple live chat website
+----------
 ## Running the app
 
-Simply run `docker-compose up` in order to start the app.
-## docker-compose layout
+This app runs on docker-compose, which you can install from [here](https://docs.docker.com/compose/install/).
+
+You can then simply run `docker-compose up` in order to start the app.
+
+## Developing
+
+In order to set up a development environment, you should install pip requirements,
+found in the `requirements.txt` file in the root folder.
+
+You can do so using `pip install -r requirements.txt`
+(I would recommend using a virtual environment).
+
+You should then export the environment variables in the `development.env` file.
+
+There are many ways to do this, but the one I found the most simple and easy was this 
+command: `export $(grep -v '^#' development.env | xargs -d '\n')` ([source](https://stackoverflow.com/questions/19331497/set-environment-variables-from-file-of-key-value-pairs)).
+
+### docker-compose layout
 
 This app is composed of four services: **nginx**, **daphne**, **redis** and **postgres**:
 
@@ -24,20 +40,10 @@ Services who do not need to know about each other are isolated through the use o
 - *frontend* (nginx - daphne)
 - *backend* (daphne - redis - postgres).
 
-## Requirements
-
-This app runs on docker-compose, which you can install from [here](https://docs.docker.com/compose/install/).
-
-pip requirements can be found in the `requirements.txt` file in the root folder.
-
-You can install them using `pip install -r requirements.txt`.
-
-You don't need to install these in order to run the app, since docker-compose does this for you,
-but if you want to contribute to the project this will allow you to run the `manage.py` file for
-a better developing, testing and debugging experience.
-
 ----------
 
 #### Notes
 
-This app is not prepared to run in real environments (yet). CI/CD is missing, test support is missing, user authentication is missing... you get the point. My only intention was to try out tools such as Django, GitHub, Docker, Nginx, etc. I wanted to see how well I could get the hang of them and how much would it take me to build a functioning app.
+This is not meant to be a real and working web application. It's just a simple personal project
+with the goal of trying out new technologies and having an insight into the challenges developers
+face when carrying out this sort of tasks on a daily basis.1
