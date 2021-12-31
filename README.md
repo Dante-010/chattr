@@ -6,6 +6,16 @@ This app runs on docker-compose, which you can install from [here](https://docs.
 
 You can then simply run `docker-compose up` in order to start the app.
 
+### Setting up a superuser and creating a new room
+
+Once all the containers have started, log in to `daphne_production` with the following command:
+
+`docker exec -ti daphne_production /bin/bash`.
+
+You then need to run `python manage.py createsuperuser`.
+
+Finally, go the the `/admin` page, (eg: `localhost/admin`) and create a new room.
+
 ## Developing
 
 In order to set up a development environment, you should install pip requirements,
