@@ -1,5 +1,4 @@
 TODO:
-1: Add a way to have a default superuser and room.
 2: Configure CI/CD (With Github Actions).
 3: Configure Github Secrets (SECRET_KEY) (Change secret_key.txt to a github secret).
 
