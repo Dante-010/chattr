@@ -1,27 +1,37 @@
-name: SSH Deploy
+name: CI
 on:
   push:
     branches: [ master ]
   workflow_dispatch:
 
 jobs:
-  build:
+  # test:
+  #   ...
+  deploy:
+    name: "Deploy to personal server"
     runs-on: ubuntu-latest
+    # needs: test
     steps:
-      - uses: actions/checkout@v2
-      - name: Deploy with SSH
+      - name: Configure SSH
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ../private.key
           sudo chmod 600 ../private.key
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          cat >>~/.ssh/config <<END
+          Host server
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/staging.key
+            StrictHostKeyChecking no
+          END
           ssh -i $SSH_KEY_PATH -p 222 dante@danteculaciati.ddns.net
-          cd /home/dante/code
-          docker-compose down
-          git pull
-          docker-compose up --build
         shell: bash
         env:
+          SSH_USER: ${{secrets.SSH_USER}}
+          SSH_HOST: ${{secrets.SSH_HOST}}
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+      - name: Restart the application
+        run: ssh server 'cd /home/dante/code/chattr && docker-compose down && git fetch && git reset --hard origin/master && docker-compose up --build'
