@@ -22,7 +22,6 @@ jobs:
           fingerprint: ${{secrets.SSH_FINGERPRINT}}
           script: |
             cd /home/dante/code/chattr
-            docker-compose down
-            git fetch
-            git reset --hard origin/master
-            docker-compose up --build
+            /home/dante/.local/bin/docker-compose down
+            git pull
+            /home/dante/.local/bin/docker-compose up --build
