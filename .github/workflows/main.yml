@@ -1,4 +1,4 @@
-name: Test & Deploy
+name: SSH Deploy
 on:
   push:
     branches: [ master ]
@@ -16,7 +16,7 @@ jobs:
           sudo chmod 600 ../private.key
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
           ssh -i $SSH_KEY_PATH -p 222 dante@danteculaciati.ddns.net
-          cd /home/dante/code/data
+          cd /home/dante/code
           docker-compose down
           git pull
           docker-compose up --build
