@@ -10,7 +10,7 @@ channels==3.0.4
 constantly==15.1.0
 cryptography==35.0.0
 daphne==3.0.2
-Django==3.2.8
+Django==3.2.10
 hiredis==2.0.0
 hyperlink==21.0.0
 idna==3.3
