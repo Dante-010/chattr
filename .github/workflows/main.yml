@@ -12,15 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     # needs: test
     steps:
+      - name: set up SSH
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ../private.key
+          sudo chmod 600 ../private.key
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
       - name: Deploy with SSH
         uses: appleboy/ssh-action@master
         with:
           host: $SSH_HOST
           username: $SSH_USER
           port: $SSH_PORT
-          fingerprint: $SSH_KNOWN_HOSTS
+          fingerprint: $SSH_FINGERPRINT
           key: $SSH_PRIVATE_KEY
-          key_path: $SSH_KEY_PATH
           script: |
             cd /home/dante/code/chattr
             docker-compose down
@@ -32,5 +37,4 @@ jobs:
           SSH_HOST: ${{secrets.SSH_HOST}}
           SSH_PORT: ${{secrets.SSH_PORT}}
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
-          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+          SSH_FINGERPRINT: ${{secrets.SSH_FINGERPRINT}}
