@@ -1,6 +1,0 @@
-TODO:
-2: Configure CI/CD (With Github Actions).
-3: Configure Github Secrets (SECRET_KEY) (Change secret_key.txt to a github secret).
-
-FIXME:
-1: Rooms with spaces in their names break the site.
