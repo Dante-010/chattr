@@ -15,20 +15,14 @@ jobs:
       - name: Deploy with SSH
         uses: appleboy/ssh-action@master
         with:
-          host: $SSH_HOST
-          username: $SSH_USER
-          port: $SSH_PORT
-          key: $SSH_PRIVATE_KEY
-          fingerprint: $SSH_FINGERPRINT
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
+          port: ${{secrets.SSH_PORT}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          fingerprint: ${{secrets.SSH_FINGERPRINT}}
           script: |
             cd /home/dante/code/chattr
             docker-compose down
             git fetch
             git reset --hard origin/master
             docker-compose up --build
-        env:
-          SSH_USER: ${{secrets.SSH_USER}}
-          SSH_HOST: ${{secrets.SSH_HOST}}
-          SSH_PORT: ${{secrets.SSH_PORT}}
-          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
-          SSH_FINGERPRINT: ${{secrets.SSH_FINGERPRINT}}
