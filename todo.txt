@@ -1,0 +1,3 @@
+- Change 'ROOMS' to a home icon.
+- Add Github icon.
+- Print IP address of user.

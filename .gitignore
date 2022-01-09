@@ -1,5 +1,4 @@
 .vscode/
-TODO.txt
 chattr_venv
 geckodriver.log
 secret_key.txt

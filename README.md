@@ -18,18 +18,24 @@ Finally, go the the `/admin` page, (eg: `localhost/admin`) and create a new room
 
 ## Developing
 
-In order to set up a development environment, you should install pip requirements,
+In order to set up a development environment, you should, first of all, install pip requirements,
 found in the `requirements.txt` file in the root folder.
 
 You can do so using `pip install -r requirements.txt`
 (I would recommend using a virtual environment).
 
-You should then export the environment variables in the `development.env` file.
+You should then export the environment variables in the `development.env` and `.env` files. (This allows you to run `manage.py` without starting the docker container.)
 
-There are many ways to do this, but the one I found the most simple and easy was this 
+There are many ways to do this, but the one I found the most simple and easy was using this 
 command:
 
- `export $(grep -v '^#' development.env | xargs -d '\n')` ([source](https://stackoverflow.com/questions/19331497/set-environment-variables-from-file-of-key-value-pairs)).
+ `export $(egrep -vh '^#' development.env .env | xargs -d '\n')` ([source](https://stackoverflow.com/questions/19331497/set-environment-variables-from-file-of-key-value-pairs)).
+
+ If you'd like to unset these variables, you can use this command:
+
+ `unset $(egrep -oh '^.+=' development.env .env | xargs -d '=')`
+
+I'd recommend setting up a virtual environment so that these variables are automatically set and unset each time you activate/deactivate it, but there plenty other ways to do this.
 
 ### docker-compose layout
 
@@ -43,7 +49,7 @@ Websocket connections are set on port 8000.
 
 - **redis** is an in-memory data structure used as a database, cache, and message broker.
   
-- **postgres** is a database in which all of our user data is stored.
+- **postgres** is a database in which all data (eg: admin accounts) is stored.
 
 Most of the settings of these containers are defined as environment variables, which
 can be found inside the '.env' file.
