@@ -24,4 +24,5 @@ jobs:
             cd /home/dante/code/chattr
             /home/dante/.local/bin/docker-compose down
             git pull
-            /home/dante/.local/bin/docker-compose up --build
+            /home/dante/.local/bin/docker-compose up --build -d
+            exit
