@@ -10,7 +10,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False')
 
-ALLOWED_HOSTS=['nginx', 'localhost']
+ALLOWED_HOSTS=['localhost', 'danteculaciati.ddns.net']
 
 ADMINS = [('Dante', 'programmingdante@gmail.com'),]
 
