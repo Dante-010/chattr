@@ -18,7 +18,7 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ../private.key
           sudo chmod 600 ../private.key
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
-          ssh -p $SSH_PORT -i $SSH_KEY_PATH $SSH_USER@$SSH_HOST 'cd /home/dante/code/chattr && docker-compose down && git fetch && git reset --hard origin/master && docker-compose up --build'
+          ssh -p $SSH_PORT -i $SSH_KEY_PATH $SSH_USER@$SSH_HOST 'cd /home/dante/code/chattr; docker-compose down; git fetch; git reset --hard origin/master; docker-compose up --build'
         shell: bash
         env:
           SSH_USER: ${{secrets.SSH_USER}}
