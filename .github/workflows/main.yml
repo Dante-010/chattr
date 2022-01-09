@@ -19,6 +19,7 @@ jobs:
           username: $SSH_USER
           port: $SSH_PORT
           key: $SSH_PRIVATE_KEY
+          fingerprint: $SSH_FINGERPRINT
           script: |
             cd /home/dante/code/chattr
             docker-compose down
