@@ -24,7 +24,6 @@ jobs:
           host: $SSH_HOST
           username: $SSH_USER
           port: $SSH_PORT
-          fingerprint: $SSH_FINGERPRINT
           key: $SSH_PRIVATE_KEY
           script: |
             cd /home/dante/code/chattr
