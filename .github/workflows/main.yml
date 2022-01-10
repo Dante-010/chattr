@@ -24,6 +24,6 @@ jobs:
             cd /home/dante/code/chattr
             /home/dante/.local/bin/docker-compose down
             git pull
-            export ${{secrets.SECRET_KEY}}
+            export SECRET_KEY=${{secrets.SECRET_KEY}}
             /home/dante/.local/bin/docker-compose up --build -d
             exit
