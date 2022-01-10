@@ -18,24 +18,45 @@ Finally, go the the `/admin` page, (eg: `localhost/admin`) and create a new room
 
 ## Developing
 
-In order to set up a development environment, you should, first of all, install pip requirements,
-found in the `requirements.txt` file in the root folder.
+In order to set up a development environment, you should follow these steps:
 
+1. Install pip requirements:
+   
 You can do so using `pip install -r requirements.txt`
 (I would recommend using a virtual environment).
 
-You should then export the environment variables in the `development.env` and `.env` files. (This allows you to run `manage.py` without starting the docker container.)
+2. Export environment variables:
 
 There are many ways to do this, but the one I found the most simple and easy was using this 
 command:
 
- `export $(egrep -vh '^#' development.env .env | xargs -d '\n')` ([source](https://stackoverflow.com/questions/19331497/set-environment-variables-from-file-of-key-value-pairs)).
+ `export $(egrep -vh '^#' .env development.env | xargs -d '\n')` ([source](https://stackoverflow.com/questions/19331497/set-environment-variables-from-file-of-key-value-pairs)).
 
  If you'd like to unset these variables, you can use this command:
 
- `unset $(egrep -oh '^.+=' development.env .env | xargs -d '=')`
+ `unset $(egrep -oh '^[^#].+=' .env development.env | xargs -d '=')`
+
+It's important `development.env` goes before `.env`, since it overrides some variables in order to
+achieve a simpler transition from a production environment to a development environment without breaking
+anything.
 
 I'd recommend setting up a virtual environment so that these variables are automatically set and unset each time you activate/deactivate it, but there plenty other ways to do this.
+
+3. Run a redis docker container
+
+You can use: `$ docker run -p 6379:6379 -d redis:5`.
+This container will be used when you run `python manage.py runserver` and
+will allow for websocket handling.
+
+4. Install [geckodriver](https://github.com/mozilla/geckodriver)/[chromedriver](https://chromedriver.chromium.org/).
+
+In order to run automated tests, the app uses selenium along with geckodriver. If you'd like to, you can use chromedriver too, but **remember to change the corresponding settings** in the [chat/tests.py](chat/tests.py) file.
+
+#### Testing
+
+Once you've followed all these steps, you can run tests using: `python manage.py test`.
+
+You can also run the development server using `python manage.py runserver`.
 
 ### docker-compose layout
 
