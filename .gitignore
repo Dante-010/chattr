@@ -1,8 +1,6 @@
 .vscode/
 chattr_venv
 geckodriver.log
-secret_key.txt
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
