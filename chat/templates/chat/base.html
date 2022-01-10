@@ -11,10 +11,12 @@
         {% endblock head %}
     </head>
 
-    <body style="background-color: rgb(17, 17, 17);">
+    <body>
         <div id="topnav">
             {% block topnav %}
-                <a id="rooms" href="/">ROOMS</a>
+                <a id="rooms" href="/">
+                    <img src="{% static 'chat/images/chattr.png' %}">
+                </a>
             {% endblock topnav %}
         </div>
         <div id="content">
