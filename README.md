@@ -42,13 +42,13 @@ anything.
 
 I'd recommend setting up a virtual environment so that these variables are automatically set and unset each time you activate/deactivate it, but there plenty other ways to do this.
 
-3. Run a redis docker container
+3. Run a redis docker container:
 
 You can use: `docker run -p 6379:6379 -d redis:5`.
 This container will be used when you run `python manage.py runserver` and
 will allow for websocket handling.
 
-4. Install [geckodriver](https://github.com/mozilla/geckodriver)/[chromedriver](https://chromedriver.chromium.org/).
+4. Install [geckodriver](https://github.com/mozilla/geckodriver)/[chromedriver](https://chromedriver.chromium.org/):
 
 In order to run automated tests, the app uses selenium along with geckodriver. If you'd like to, you can use chromedriver too, but **remember to change the corresponding settings** in the [chat/tests.py](chat/tests.py) file.
 
@@ -58,7 +58,7 @@ Once you've followed all these steps, you can run tests using: `python manage.py
 
 You can also run the development server using: `python manage.py runserver`.
 
-If you want to directly test the docker containers, you'll have to rebuild them with: `docker-compose up --build`.
+If you want to directly run the docker containers, you'll have to rebuild them with: `docker-compose up --build`.
 
 ### docker-compose layout
 
