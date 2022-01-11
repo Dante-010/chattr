@@ -44,7 +44,7 @@ I'd recommend setting up a virtual environment so that these variables are autom
 
 3. Run a redis docker container
 
-You can use: `$ docker run -p 6379:6379 -d redis:5`.
+You can use: `docker run -p 6379:6379 -d redis:5`.
 This container will be used when you run `python manage.py runserver` and
 will allow for websocket handling.
 
@@ -56,7 +56,9 @@ In order to run automated tests, the app uses selenium along with geckodriver. I
 
 Once you've followed all these steps, you can run tests using: `python manage.py test`.
 
-You can also run the development server using `python manage.py runserver`.
+You can also run the development server using: `python manage.py runserver`.
+
+If you want to directly test the docker containers, you'll have to rebuild them with: `docker-compose up --build`.
 
 ### docker-compose layout
 
