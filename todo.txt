@@ -1,2 +1,0 @@
-- Add automated testing.
-- Fix printing IP.
