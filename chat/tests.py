@@ -26,7 +26,9 @@ class ChatTests(ChannelsLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         try:
-            # NOTE: Requires "chromedriver" binary to be installed in $PATH
+            # NOTE: Requires "geckodriver" binary to be installed in $PATH
+            # If you'd like to use chromedriver, you can change this line to
+            # cls.driver = webdriver.Chrome()
             cls.driver = webdriver.Firefox()
         except:
             super().tearDownClass()
@@ -106,17 +108,17 @@ class ChatTests(ChannelsLiveServerTestCase):
 
     def _open_new_window(self):
         self.driver.execute_script('window.open("about:blank", "_blank");')
-        self.driver.switch_to_window(self.driver.window_handles[-1])
+        self.driver.switch_to.window(self.driver.window_handles[-1])
 
     def _close_all_new_windows(self):
         while len(self.driver.window_handles) > 1:
-            self.driver.switch_to_window(self.driver.window_handles[-1])
+            self.driver.switch_to.window(self.driver.window_handles[-1])
             self.driver.execute_script('window.close();')
         if len(self.driver.window_handles) == 1:
-            self.driver.switch_to_window(self.driver.window_handles[0])
+            self.driver.switch_to.window(self.driver.window_handles[0])
 
     def _switch_to_window(self, window_index):
-        self.driver.switch_to_window(self.driver.window_handles[window_index])
+        self.driver.switch_to.window(self.driver.window_handles[window_index])
 
     def _post_message(self, message):
         ActionChains(self.driver).send_keys(message + '\n').perform()

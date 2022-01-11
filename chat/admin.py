@@ -1,8 +1,19 @@
 from django.contrib import admin
+from django import forms
 
 from .models import ChatRoom
 
-class ChatRoomAdmin(admin.ModelAdmin):
-    list_display = ("room_name", "creation_date")
+class ChatRoomAdminForm(forms.ModelForm):
+    class Meta:
+        model = ChatRoom
+        fields = "__all__"
 
-admin.site.register(ChatRoom, ChatRoomAdmin)
+    def clean_room_name(self):
+        if ' ' in self.cleaned_data['room_name']:
+            raise forms.ValidationError("Can't contain spaces")
+
+        return self.cleaned_data['room_name']
+
+@admin.register(ChatRoom)
+class ChatRoomAdmin(admin.ModelAdmin):
+    form = ChatRoomAdminForm

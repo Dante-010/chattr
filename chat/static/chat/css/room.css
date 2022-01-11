@@ -1,39 +1,28 @@
 @import url("main.css");
 
+h1 {
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-weight: 900;
+}
+
+#chat-log, #chat-message-input {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgb(255, 255, 255);
+    border-style: none;
+    background-color: rgba(0, 0, 0, 0.3)
+}
+
 #chat-log {
     resize: none;
     overflow: auto;
     width: 100%;
     height: 500px;
-    font-size: 25px;
-    border-style: solid;
-    background-color: black;
-    color: white;
-    font-weight: 400;
-}
-
-#input-area {
-    width: 100%;
-    padding-top: 10px;
-}
-
-#input-area * {
-    background-color: black;
-    color: white;
-    border-style: solid;
-    border-color: gray;
-    height: 30px;
-    font-size: 20px;
-    font-weight: 300;
 }
 
 #chat-message-input {
-    float: left;
-    width: 95%;
-}
-
-#chat-message-submit {
-    float: right;
-    height: 35px;
-    width: 4%;
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
 }
