@@ -1,10 +1,22 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+body {
+    background-image: linear-gradient(rgb(4, 100, 255), black);
+}
+
 #topnav {
       overflow: hidden;
 }
 
 /* Style the links inside the navigation bar */
 #topnav a {
-    float: left;
     height: 64px;
 }
 
@@ -14,21 +26,14 @@
     color: rgb(179, 179, 179);
 }
 
-/* Add a color to the active/current link */
-#topnav a.active {
-    background-color: rgba(255, 255, 255, 0);
-    color: rgb(255, 255, 255);
-}
-
 #topnav a img {
     height: 100%;
 }
 
-* {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
+#topnav #rooms {
+    float: left
 }
 
-body {
-    background-color: rgb(27, 27, 27);
+#topnav #GitHub {
+    float: right
 }

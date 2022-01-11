@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="{% static 'chat/css/room.css' %}">
 {% endblock head %}
 
+{% block topnav %}
+    <a id="rooms" href="/">
+        <img src="{% static 'chat/images/chattr.png' %}">
+    </a>
+    <h1>{{room_name}}</h1>
+{% endblock topnav %}
+
 {% block content %}
     <textarea readonly id="chat-log"></textarea><br>
-    <div id='input-area'>
-        <input id="chat-message-input" type="text">
-        <input id="chat-message-submit" type="button" value="Send">
-    </div>
+    <input id="chat-message-input" type="text">
     {{ room_name|json_script:"room-name" }}
 {% endblock content %}
