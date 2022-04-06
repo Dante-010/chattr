@@ -16,6 +16,8 @@ You then need to run `python manage.py createsuperuser`.
 
 Finally, go the the `/admin` page, (eg: `localhost/admin`) and create a new room.
 
+
+
 ## Developing
 
 In order to set up a development environment, you should follow these steps:
@@ -63,7 +65,12 @@ You can also run the development server using: `python manage.py runserver`.
 
 If you want to directly run the docker containers, you'll have to rebuild them with: `docker-compose up --build`.
 
-### docker-compose layout
+#### CI
+There is also a CI workflow set up to connect to my personal server, update the source code, and restart the app.
+
+
+
+## docker-compose layout
 
 This app is composed of four services: **nginx**, **daphne**, **redis** and **postgres**:
 
@@ -83,9 +90,6 @@ can be found inside the [.env](.env) file.
 Services who do not need to know about each other are isolated through the use of two networks:
 - *frontend* (nginx - daphne)
 - *backend* (daphne - redis - postgres).
-
-#### CI
-There is also a CI workflow set up to connect to my personal server, update the source code, and restart the app.
 
 ----------
 
