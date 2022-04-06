@@ -1,4 +1,4 @@
-# **Chattr**: A simple live chat website
+# **Chattr**: A simple live chat website ![App Icon](chat/static/chat/images/favicon.ico)
 ----------
 ## Running the app
 
