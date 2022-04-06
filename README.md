@@ -36,7 +36,7 @@ command:
 
  `unset $(egrep -oh '^[^#].+=' .env development.env | xargs -d '=')`
 
-It's important `development.env` goes before `.env`, since it overrides some variables in order to
+It's important `development.env` goes after `.env`, since it overrides some variables in order to
 achieve a simpler transition from a production environment to a development environment without breaking
 anything.
 
