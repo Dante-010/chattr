@@ -68,7 +68,7 @@ If you want to directly run the docker containers, you'll have to rebuild them w
 This app is composed of four services: **nginx**, **daphne**, **redis** and **postgres**:
 
 - **nginx** works as a reverse proxy which serves static files and routes websocket traffic to daphne.
-Static files are located in 'nginx/collected_static'.
+Static files are located in `nginx/collected_static`.
 
 - The app runs inside **daphne**, which handles websocket requests and communicates with the database.
 Websocket connections are set on port 8000.
@@ -78,7 +78,7 @@ Websocket connections are set on port 8000.
 - **postgres** is a database in which all data (eg: admin accounts) is stored.
 
 Most of the settings of these containers are defined as environment variables, which
-can be found inside the '.env' file.
+can be found inside the [.env](.env) file.
 
 Services who do not need to know about each other are isolated through the use of two networks:
 - *frontend* (nginx - daphne)
