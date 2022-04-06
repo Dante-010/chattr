@@ -40,7 +40,7 @@ It's important `development.env` goes after `.env`, since it overrides some vari
 achieve a simpler transition from a production environment to a development environment without breaking
 anything.
 
-I'd recommend setting up a virtual environment so that these variables are automatically set and unset each time you activate/deactivate it, but there plenty other ways to do this.
+I'd recommend setting up a virtual environment so that these variables are automatically set and unset each time you activate/deactivate it, but there are plenty of other ways to do this.
 
 3. Run a redis docker container:
 
