@@ -44,7 +44,7 @@ I'd recommend setting up a virtual environment so that these variables are autom
 
 3. Run a redis docker container:
 
-You can use: `docker run -p 6379:6379 -d redis:5`.
+You can use: `docker run -p 6379:6379 -d redis:5` (You could also use $REDIS_PORT instead of 6379, but do as you prefer).
 This container will be used when you run `python manage.py runserver` and
 will allow for websocket handling.
 
