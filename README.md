@@ -84,6 +84,9 @@ Services who do not need to know about each other are isolated through the use o
 - *frontend* (nginx - daphne)
 - *backend* (daphne - redis - postgres).
 
+#### CI
+There is also a CI workflow set up to connect to my personal server, update the source code, and restart the app.
+
 ----------
 
 #### Notes
