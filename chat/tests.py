@@ -10,6 +10,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from .models import ChatRoom
 
+# NOTE: Requires "geckodriver" binary to be installed in $PATH
+# If you'd like to use chromedriver, you can change this line to
+# test_driver = webdriver.Chrome()
+test_driver = webdriver.Firefox()
+
 # === Normal Tests ===
 class MyTests(TestCase):
     async_client = AsyncClient()
@@ -26,10 +31,7 @@ class ChatTests(ChannelsLiveServerTestCase):
     def setUpClass(cls):
         super().setUpClass()
         try:
-            # NOTE: Requires "geckodriver" binary to be installed in $PATH
-            # If you'd like to use chromedriver, you can change this line to
-            # cls.driver = webdriver.Chrome()
-            cls.driver = webdriver.Firefox()
+            cls.driver = test_driver
         except:
             super().tearDownClass()
             raise
