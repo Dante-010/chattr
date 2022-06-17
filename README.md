@@ -38,15 +38,15 @@ command:
 
  `unset $(egrep -oh '^[^#].+=' .env development.env | xargs -d '=')`
 
-It's important `development.env` goes after `.env`, since it overrides some variables in order to
+It's important `.env` goes before `development.env`, since it overrides some variables in order to
 achieve a simpler transition from a production environment to a development environment without breaking
 anything.
 
-I'd recommend setting up a virtual environment so that these variables are automatically set and unset each time you activate/deactivate it, but there are plenty of other ways to do this.
+I'd recommend setting up a virtual environment so that these variables are automatically set/unset each time you activate/deactivate it, but there are plenty of other ways to do this.
 
 3. Run a redis docker container:
 
-You can use: `docker run -p $REDIS_PORT:$REDIS_PORT -d redis:5`
+You can use `docker run -p $REDIS_PORT:$REDIS_PORT -d redis:5`
 
 (Use 6379 as the port number if the appropiate environment variable isn't set).
 
@@ -59,11 +59,11 @@ In order to run automated tests, the app uses selenium along with geckodriver. I
 
 #### Testing
 
-Once you've followed all these steps, you can run tests using: `python manage.py test`.
+Once you've followed all these steps, you can run tests using `python manage.py test`.
 
-You can also run the development server using: `python manage.py runserver`.
+You can also run the development server using `python manage.py runserver`.
 
-If you want to directly run the docker containers, you'll have to rebuild them with: `docker-compose up --build`.
+If you want to directly run the docker containers, you'll have to rebuild them with `docker-compose up --build`.
 
 #### CI
 There is also a CI workflow set up to connect to my personal server, update the source code, and restart the app.
@@ -75,14 +75,14 @@ There is also a CI workflow set up to connect to my personal server, update the 
 This app is composed of four services: **nginx**, **daphne**, **redis** and **postgres**:
 
 - **nginx** works as a reverse proxy which serves static files and routes websocket traffic to daphne.
-Static files are located in `nginx/collected_static`.
+Static files are located in `nginx/collected_static` (inside the container).
 
-- The app runs inside **daphne**, which handles websocket requests and communicates with the database.
+- The app runs on **daphne**, which handles websocket requests and communicates with the database.
 Websocket connections are set on port 8000.
 
 - **redis** is an in-memory data structure used as a database, cache, and message broker.
   
-- **postgres** is a database in which all data (eg: admin accounts) is stored.
+- **postgres** is the database in which all data (eg: admin accounts) is stored.
 
 Most of the settings of these containers are defined as environment variables, which
 can be found inside the [.env](.env) file.
