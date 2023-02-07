@@ -96,5 +96,4 @@ Services who do not need to know about each other are isolated through the use o
 #### Notes
 
 This is not meant to be a real and working web application. It's just a simple personal project
-with the goal of trying out new technologies and having an insight into the challenges developers
-face when carrying out this sort of tasks on a daily basis.
+with the goal of trying out a new framework, and learning how to set up a server.
